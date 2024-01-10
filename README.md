@@ -6,7 +6,7 @@
     1.1 Tactic 1: Use delimiters to clearly indicate distinct parts of the input
     1.2 Tactic 2: Ask for a structured output
     1.3 Ask the model to check whether conditions are satisfied
-    1.4  Tactic 4: "Few-shot" prompting
+    1.4 Tactic 4: "Few-shot" prompting
  
 
 
