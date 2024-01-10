@@ -147,7 +147,7 @@ def get_example_prompt(id):
     return prompt[id]
     
 
-# ---------- MAIN -------------
+####### MAIN #######
 
 client = OpenAI(api_key=OPENAI_API_KEY)
 
