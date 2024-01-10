@@ -67,7 +67,6 @@ def clear_screen():
 def get_example_prompt(id):
     prompt = []
     
-    
     # ID = 0     // Initial example
     prompt.append('What is the tallest waterfall on Earth?')
     
@@ -127,11 +126,9 @@ def get_example_prompt(id):
 
     \"\"\"{text_1}\"\"\"
     """
-
     prompt.append(p)
     
-
-    
+   
     # ID = 4    //  Tactic 4: "Few-shot" prompting
     p = f"""
     Your task is to answer in a consistent style.
@@ -147,10 +144,11 @@ def get_example_prompt(id):
     """
     prompt.append(p)
     
-    print (prompt[id])
     return prompt[id]
     
-####### MAIN #######
+
+# ---------- MAIN -------------
+
 client = OpenAI(api_key=OPENAI_API_KEY)
 
 
