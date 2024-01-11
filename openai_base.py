@@ -1,6 +1,7 @@
 from time import sleep
 from openai import OpenAI
 import os
+from IPython.display import display, HTML
 from dotenv import load_dotenv, find_dotenv
 _    = load_dotenv(find_dotenv())    # read local .env file
 
@@ -144,6 +145,63 @@ def get_example_prompt(id):
     """
     prompt.append(p)
     
+    # ID = 5    //  Tactic 4: Iterative improving of the prompts
+    
+    fact_sheet_chair = """
+        OVERVIEW
+        - Part of a beautiful family of mid-century inspired office furniture, 
+        including filing cabinets, desks, bookcases, meeting tables, and more.
+        - Several options of shell color and base finishes.
+        - Available with plastic back and front upholstery (SWC-100) 
+        or full upholstery (SWC-110) in 10 fabric and 6 leather options.
+        - Base finish options are: stainless steel, matte black, 
+        gloss white, or chrome.
+        - Chair is available with or without armrests.
+        - Suitable for home or business settings.
+        - Qualified for contract use.
+
+        CONSTRUCTION
+        - 5-wheel plastic coated aluminum base.
+        - Pneumatic chair adjust for easy raise/lower action.
+
+        DIMENSIONS
+        - WIDTH 53 CM | 20.87”
+        - DEPTH 51 CM | 20.08”
+        - HEIGHT 80 CM | 31.50”
+        - SEAT HEIGHT 44 CM | 17.32”
+        - SEAT DEPTH 41 CM | 16.14”
+
+        OPTIONS
+        - Soft or hard-floor caster options.
+        - Two choices of seat foam densities: 
+        medium (1.8 lb/ft3) or high (2.8 lb/ft3)
+        - Armless or 8 position PU armrests 
+
+        MATERIALS
+        SHELL BASE GLIDER
+        - Cast Aluminum with modified nylon PA6/PA66 coating.
+        - Shell thickness: 10 mm.
+        SEAT
+        - HD36 foam
+
+        COUNTRY OF ORIGIN
+        - Italy
+    """
+    p = f"""
+    Your task is to help a marketing team create a 
+    description for a retail website of a product based 
+    on a technical fact sheet.
+
+    Write a product description based on the information 
+    provided in the technical specifications delimited by 
+    triple backticks.
+
+    Technical specifications: ```{fact_sheet_chair}```
+    """
+    prompt.append(p)
+    
+    
+    
     return prompt[id]
     
 
@@ -151,8 +209,9 @@ def get_example_prompt(id):
 
 client = OpenAI(api_key=OPENAI_API_KEY)
 
+PROMPT_NUMBER = 3
 
-prompt = get_example_prompt(3)
+prompt = get_example_prompt(PROMPT_NUMBER)
 response = get_completion(prompt, client) # call your function
 
 
@@ -163,3 +222,6 @@ print ('--- AriHer Chat GPT ---\n\n')
 print('Prompt:', prompt)
 print ('Ansuer:', response)
 
+# Despliega la respuesta en HTML
+if PROMPT_NUMBER==5: 
+    display(HTML(response))
